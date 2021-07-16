@@ -1,0 +1,27 @@
+.modal-header {
+  @extend .border-0;
+  @extend .text-center;
+  .close {
+    @extend .position-absolute;
+    @extend .p-0;
+    right: 32px;
+  }
+}
+
+.modal-footer {
+  @extend .border-0;
+  @extend .pt-0;
+  justify-content: flex-start;
+}
+
+.modal-title {
+  @extend .mx-auto;
+}
+
+.modal.fade.fade-down .modal-dialog {
+  transform: translate(0, 50px);
+}
+
+.modal.fade.fade-down.show .modal-dialog {
+  transform: none;
+}

@@ -1,0 +1,93 @@
+.text-size {
+  &-12 {
+    font-size: 12px;
+  }
+  &-13 {
+    font-size: 13px;
+  }
+  &-14 {
+    font-size: 14px;
+  }
+  &-15 {
+    font-size: 15px;
+  }
+  &-16 {
+    font-size: 16px;
+  }
+  &-17 {
+    font-size: 17px;
+  }
+  &-18 {
+    font-size: 18px;
+  }
+  &-19 {
+    font-size: 19px;
+  }
+  &-20 {
+    font-size: 20px;
+  }
+  &-22 {
+    font-size: 22px;
+  }
+  &-24 {
+    font-size: 24px;
+  }
+  &-26 {
+    font-size: 26px;
+  }
+  &-28 {
+    font-size: 28px;
+  }
+  &-30 {
+    font-size: 30px;
+  }
+  &-32 {
+    font-size: 32px;
+  }
+  &-36 {
+    font-size: 36px;
+  }
+}
+
+.line-height {
+  &-11 {
+    line-height: 11px;
+  }
+  &-12 {
+    line-height: 12px;
+  }
+  &-13 {
+    line-height: 13px;
+  }
+  &-14 {
+    line-height: 14px;
+  }
+  &-15 {
+    line-height: 15px;
+  }
+  &-16 {
+    line-height: 16px;
+  }
+  &-17 {
+    line-height: 17px;
+  }
+  &-18 {
+    line-height: 18px;
+  }
+  &-19 {
+    line-height: 19px;
+  }
+  &-20 {
+    line-height: 20px;
+  }
+  &-40 {
+    line-height: 40px;
+  }
+}
+
+.disable-user-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

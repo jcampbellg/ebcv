@@ -1,0 +1,73 @@
+$theme-colors: (
+  'primary': #3982EF,
+  'accent': #EFA538,
+  'background': #E6ECF3,
+  'white': #FFFFFF,
+  'form-control': #FFFFFF,
+  'light': #D8D8D8,
+  'muted': #8f9094,
+  'muted-light': #ced4da,
+  'blue': #3982EF,
+  'blue-light' : #A8B4FF,
+  'purple' : #E7C2FE,
+  'pink' : #e83e8c,
+  'red' : #E27B6B,
+  'error' : #E27B6B,
+  'orange': #EFA538,
+  'yellow': #ffc107,
+  'green' : #1FAB92,
+  'succeed' : #28a745,
+  'info-succeed' : #28a745,
+  'teal' : #20c997,
+  'cyan' : #17a2b8,
+  'egg-shell': #e7dfc6,
+  'gold': #c59849,
+  'peach': #F1BF98,
+  'rifle-green': #3F4739,
+  'charcoal': #373F51
+);
+
+$colors: (
+  'white-transparent': fade-out($color: #FFFFFF, $amount: 0.5),
+  'muted': #8f9094,
+);
+
+$border-radius: 2px;
+$border-radius-lg: 10px;
+$input-focus-box-shadow: none!important;
+$input-placeholder-color: #8f9094;
+$input-focus-border-color: #8f9094;
+$btn-focus-box-shadow: none!important;
+$modal-header-padding: 2rem;
+$modal-inner-padding: 2rem;
+
+@import 'bootstrap/scss/bootstrap.scss';
+@import './text.scss';
+@import './opacity.scss';
+@import './input.scss';
+@import './sizes.scss';
+@import './modal.scss';
+@import './spinner.scss';
+@import './position.scss';
+@import './border.scss';
+@import './button.scss';
+@import './hover.scss';
+
+.clickable {
+  cursor: pointer;
+}
+
+@include media-breakpoint-down(lg) {
+  .container {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+canvas{
+  margin: 0 auto;
+}
+
+body {
+  background: theme-color('background');
+}

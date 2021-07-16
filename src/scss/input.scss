@@ -1,0 +1,65 @@
+.form-control.is-invalid {
+  background-image: none;
+}
+.form-control-white-line {
+  background: none;
+  @extend .rounded-0;
+  border: none;
+  border-bottom: 1px solid fade-out($color: color('white'), $amount: 0.25);
+  color: fade-out($color: color('white'), $amount: 0.25);
+  &+ label {
+    color: fade-out($color: color('white'), $amount: 0.25);
+  }
+  &::placeholder {
+    color: fade-out($color: color('white'), $amount: 0.5);
+  }
+  &:focus {
+    border-bottom: 1px solid color('white');
+    color: color('white');
+    background: none;
+    &+ label {
+      color: color('white');
+    }
+    &::placeholder {
+      color: fade-out($color: color('white'), $amount: 0.5);
+    }
+  }
+  &.is-invalid {
+    border-color: fade-out($color: theme-color('danger'), $amount: 0.5);
+    &::placeholder {
+      color: fade-out($color: theme-color('danger'), $amount: 0.5);
+    }
+    &+ label {
+      color: fade-out($color: theme-color('danger'), $amount: 0.25);
+    }
+    &:focus {
+      &+ label {
+        color: theme-color('danger');
+      }
+    }
+  }
+}
+.form-control-line {
+  background: none;
+  @extend .rounded-0;
+  border: none;
+  @extend .border-bottom;
+  @extend .text-body;
+  &:focus {
+    @extend .border-dark
+  }
+}
+.dropdown-item:hover, .dropdown-item:focus {
+  outline: none;
+}
+.form-control.search {
+  background-image: url('../assets/search-placeholder.png');
+  background-position: right 8px center;
+  background-repeat: no-repeat;
+  padding-right: 31px;
+}
+
+.react-daterange-picker__wrapper {
+  @extend .form-control;
+  display: flex;
+}
