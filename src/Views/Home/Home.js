@@ -1,8 +1,12 @@
 import React from 'react';
-import { Button, Col, Container, Input, Row, Form, FormGroup, Label } from 'reactstrap';
+import { Button, Col, Container, Input, Row, Form, FormGroup, Label, Spinner } from 'reactstrap';
+import { If, Then, Else } from 'react-if';
 import { FaBible } from 'react-icons/fa';
+import useHome from './useHome';
 
 const Home = () => {
+  const { onLogin, email, code, isFinished, isLoading, onEnter } = useHome();
+
   return (
     <Container fluid className='m-auto w-50 pb-5 bg-primary rounded-lg shadow'>
       <Row className='align-items-center justify-content-center'>
@@ -13,17 +17,38 @@ const Home = () => {
       <Row>
         <Col className='text-center pt-3 text-white hover-text-primary'>EBC Virtual</Col>
       </Row>
-      <Form className='pt-5'>
-        <FormGroup className='d-flex flex-column text-white'>
-          <Label for='email'>Correo Electronico</Label>
-          <Input className='p-0 form-control-white-line' placeholder='juanperez@dominio.com' />
-        </FormGroup>
-      </Form>
-      <Row className='align-items-center justify-content-center'>
-        <Col className='text-center pt-5'>
-          <Button className='hover-text-primary' color='white' outline block size='lg'>Iniciar</Button>
-        </Col>
-      </Row>
+      <If condition={isFinished}>
+        <Then>
+          <Form className='pt-5'>
+            <FormGroup className='d-flex flex-column text-white'>
+              <Label for='email'>Codigo en tu correo, puede estar en el SPAM</Label>
+              <Input {...code} className='p-0 form-control-white-line' placeholder='Codigo...' />
+              <Row className='align-items-center justify-content-center'>
+                <Col className='text-center pt-5'>
+                  <Button onClick={onEnter} className='hover-text-primary' color='white' outline block size='lg'>
+                    { isLoading ? <Spinner size='sm' /> : 'Verificar'}
+                  </Button>
+                </Col>
+              </Row>
+            </FormGroup>
+          </Form>
+        </Then>
+        <Else>
+          <Form className='pt-5'>
+            <FormGroup className='d-flex flex-column text-white'>
+              <Label for='email'>Correo Electronico</Label>
+              <Input {...email} type='email' className='p-0 form-control-white-line' placeholder='juanperez@dominio.com' />
+            </FormGroup>
+          </Form>
+          <Row className='align-items-center justify-content-center'>
+            <Col className='text-center pt-5'>
+              <Button onClick={onLogin} className='hover-text-primary' color='white' outline block size='lg'>
+                { isLoading ? <Spinner size='sm' /> : 'Iniciar'}
+              </Button>
+            </Col>
+          </Row>
+        </Else>
+      </If>
     </Container>
   );
 };
