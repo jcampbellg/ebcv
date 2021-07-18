@@ -19,7 +19,7 @@ const reducer = (state, {type, payload}) => {
     case TYPE.CODE:
       return {
         ...state,
-        code: (!state.isLoading && state.isFinished) ? payload : state.code
+        code: (!state.isLoading && !state.isFinished) ? payload : state.code
       };
     case TYPE.LOADING:
       return {
@@ -46,11 +46,14 @@ const reducer = (state, {type, payload}) => {
   }
 };
 
-const useJoin = () => {
+const useJoin = (onConnect) => {
   const [{code, isLoading, isFinished, error}, dispatchReducer] = useReducer(reducer, INITIAL_STATE);
 
   const onJoin = () => {
-    dispatchReducer({type: TYPE.LOADING});
+    if (code.length > 3) {
+      dispatchReducer({type: TYPE.LOADING});
+      onConnect();
+    }
   };
 
   return {
