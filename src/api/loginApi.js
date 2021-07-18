@@ -8,6 +8,11 @@ const loginApi = {
     post: (params = {code: ''}) => {
       return apiInstance.post('/login/validate', params);
     }
+  },
+  user: {
+    get: () => {
+      return apiInstance.get('/login/user');
+    }
   }
 };
 

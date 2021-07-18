@@ -1,22 +1,15 @@
 import React from 'react';
 import { Button, Col, Container, Input, Row, Form, FormGroup, Label, Spinner } from 'reactstrap';
 import { If, Then, Else } from 'react-if';
-import { FaBible } from 'react-icons/fa';
 import useHome from './useHome';
+import Logo from '../../Components/Logo/Logo';
 
 const Home = () => {
   const { onLogin, email, code, isFinished, isLoading, onEnter } = useHome();
 
   return (
     <Container fluid className='m-auto w-50 pb-5 bg-primary rounded-lg shadow'>
-      <Row className='align-items-center justify-content-center'>
-        <Col className='text-center pt-5'>
-          <FaBible className='text-white hover-text-primary' size={150} />
-        </Col>
-      </Row>
-      <Row>
-        <Col className='text-center pt-3 text-white hover-text-primary'>EBC Virtual</Col>
-      </Row>
+      <Logo />
       <If condition={isFinished}>
         <Then>
           <Form className='pt-5'>

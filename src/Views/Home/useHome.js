@@ -1,6 +1,9 @@
 import { useReducer } from 'react';
 import Joi from '@hapi/joi';
 import loginApi from '../../api/loginApi';
+import { setAuthKey } from '../../api/apiInstance';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../reducers/userReducer/userActions';
 
 const INITIAL_STATE = {
   email: '',
@@ -61,7 +64,8 @@ const reducer = (state, {type, payload}) => {
 };
 
 const useHome = () => {
-  const [{email, code, isLoading, isFinished, error}, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [{email, code, isLoading, isFinished, error}, dispatchReducer] = useReducer(reducer, INITIAL_STATE);
+  const dispatch = useDispatch();
 
   const isValid = () => {
     const validation = schema.validate({email: email}, {abortEarly: false, errors: {wrap: {label: ''},}});
@@ -70,22 +74,24 @@ const useHome = () => {
 
   const onLogin = () => {
     if (isValid()) {
-      dispatch({type: TYPE.LOADING});
+      dispatchReducer({type: TYPE.LOADING});
       loginApi.post({email}).then(({data}) => {
-        dispatch({type: TYPE.FINISH});
+        dispatchReducer({type: TYPE.FINISH});
         console.log(data);
       }).catch(err => {
-        dispatch({type: TYPE.ERROR});
+        dispatchReducer({type: TYPE.ERROR});
         console.error(err);
       });
     } else {
-      dispatch({type: TYPE.ERROR});
+      dispatchReducer({type: TYPE.ERROR});
     }
   };
 
   const onEnter = () => {
     loginApi.validate.post({code: code}).then(({data}) => {
-      console.log(data);
+      localStorage.setItem('authKey', data._id);
+      setAuthKey(data._id);
+      dispatch(setLogin(data));
     }).catch(err => {
       alert('Codigo Invalido');
     });
@@ -94,14 +100,14 @@ const useHome = () => {
   return {
     email: {
       onChange: (e) => {
-        dispatch({type: TYPE.EMAIL, payload: e.target.value});
+        dispatchReducer({type: TYPE.EMAIL, payload: e.target.value});
       },
       value: email,
       invalid: error
     },
     code: {
       onChange: (e) => {
-        dispatch({type: TYPE.CODE, payload: e.target.value});
+        dispatchReducer({type: TYPE.CODE, payload: e.target.value});
       },
       value: code
     },
