@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import io from 'socket.io-client';
-import { setSocket } from '../../reducers/userReducer/userActions';
+import { setSocket } from '../../reducers/realtimeReducer/realtimeActions';
 
 const useSocket = () => {
   const dispatch = useDispatch();

@@ -3,9 +3,16 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import useLogin from './Components/useLogin/useLogin';
 import Auth from './Views/Auth/Auth';
 import Home from './Views/Home/Home';
+import { Spinner } from 'reactstrap';
 
 const App = () => {
-  const { isLogin } = useLogin();
+  const { isLogin, isReady } = useLogin();
+
+  if (!isReady) {
+    return (
+      <Spinner />
+    )
+  }
 
   if (isLogin) {
     return (
